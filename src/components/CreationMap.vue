@@ -8,6 +8,7 @@ export default {
   data: function () {
     return {
       map: L.Map,
+      marker: L.Marker,
     };
   },
 
@@ -26,6 +27,11 @@ export default {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
+      this.map.on("click", this.onMapClick);
+    },
+    onMapClick(e) {
+      console.log("You clicked the map at " + e.latlng);
+      this.marker = L.marker(e.latlng).addTo(this.map);
     },
   },
 
