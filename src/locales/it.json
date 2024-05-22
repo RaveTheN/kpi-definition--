@@ -1,0 +1,38 @@
+{
+  "languages": {
+    "en": "English",
+    "it": "Italiano"
+  },
+  "labels": {
+    "name": "nome",
+    "kpis": "KPIs",
+    "search": "cerca",
+    "create-kpi": "Crea KPI",
+    "cancel": "Chiudi",
+    "save": "Salva",
+    "share": "Condividi",
+    "duplicate": "Duplica",
+    "export": "Export",
+    "delete": "Cancella",
+    "refresh": "Ricarica",
+    "category": "Categoia",
+    "unitMeasure": "Unità di Misura",
+    "value": "Ultimo valore misurato",
+    "target": "Obiettivo"
+  },
+  "strings": {
+    "no-KPIs": "Questa lista è vuota",
+    "please-add-KPI": "Aggiungi un nuovo KPI",
+    "kpi-name": "Scrivi un nome per il tuo KPI",
+    "delete-kpi-question": "Sei sicuro di voler eliminare questo KPI?",
+    "kpi-category": "Inserisci la categoria del KPI",
+    "kpi-unitMeasure": "Unità di misura",
+    "kpi-value": "Ultimo valore misurato",
+    "kpi-target": "Obiettivo",
+    "delete-kpi-text": "KPI cancellata",
+    "delete-kpi-tooltip": "Cancella questo KPI"
+  },
+  "errors": {
+    "kpi-name-required": "È richiesto un nome per creare il KPI"
+  }
+}

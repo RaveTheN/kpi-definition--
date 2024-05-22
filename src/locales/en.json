@@ -1,0 +1,38 @@
+{
+  "languages": {
+    "en": "English",
+    "it": "Italiano"
+  },
+  "labels": {
+    "name": "Name",
+    "kpis": "KPIs",
+    "search": "search",
+    "create-kpi": "Create KPI",
+    "cancel": "Cancel",
+    "save": "Save",
+    "share": "Share",
+    "duplicate": "Duplicate",
+    "export": "Export",
+    "delete": "Delete",
+    "refresh": "Refresh",
+    "category": "Category",
+    "unitMeasure": "Unit Measure",
+    "value": "Last measured value",
+    "target": "Target value"
+  },
+  "strings": {
+    "no-KPIs": "This list is empty",
+    "please-add-KPI": "Please add a new mashup",
+    "kpi-name": "Write a name for your KPI",
+    "delete-kpi-question": "Do you want to to delete this KPI?",
+    "kpi-category": "Write the category of the KPI",
+    "kpi-unitMeasure": "Unit of the measurement",
+    "kpi-value": "Last measured value",
+    "kpi-target": "Desired target value",
+    "delete-kpi-text": "KPI deleted",
+    "delete-kpi-tooltip": "Delete this KPI"
+  },
+  "errors": {
+    "kpi-name-required": "The name field can't be empty"
+  }
+}
