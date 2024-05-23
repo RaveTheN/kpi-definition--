@@ -47,6 +47,27 @@ export default {
     return {
       dialogMap: false,
       map: L.map,
+      
+      editedItem: {
+        id: "",
+        category: "",
+        name: "",
+        unitMeasure: "",
+        lastValue: "",
+        targetValue: "",
+        owner: "",
+        sharedWith: [],
+      },
+      defaultItem: {
+        id: "",
+        category: "",
+        name: "",
+        unitMeasure: "",
+        lastValue: "",
+        targetValue: "",
+        owner: "",
+        sharedWith: [],
+      },
     };
   },
 
