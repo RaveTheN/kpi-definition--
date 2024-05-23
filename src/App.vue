@@ -47,7 +47,7 @@ export default {
     return {
       dialogMap: false,
       map: L.map,
-      
+
       editedItem: {
         id: "",
         category: "",
@@ -57,6 +57,25 @@ export default {
         targetValue: "",
         owner: "",
         sharedWith: [],
+        formula: {
+          id: "6f422054-0dfd-4d4d-b611-8d255eb1f0c0",
+          type: "defined",
+          formulaDetails: [
+            {
+              measureId: "176171d3-5a37-49ec-90ff-9727e535b502",
+              operation: "SUM(A1:A15)",
+            },
+            {
+              measureId: "176171d3-5a37-49ec-90ff-9727e535b502",
+              operation: "SUM(A1:A10)",
+            },
+          ],
+        },
+        geoLocation: {
+          id: "b61c0f61-5671-448e-b951-9932a894a402",
+          latitude: 34.0522,
+          longitude: -118.2437,
+        },
       },
       defaultItem: {
         id: "",
