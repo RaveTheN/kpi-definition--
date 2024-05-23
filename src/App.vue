@@ -52,6 +52,9 @@ export default {
       latitude: "",
       longitude: "",
 
+      marker: L.Marker,
+      markerLayer: L.LayerGroup,
+
       editedItem: {
         id: "",
         category: "",
@@ -102,27 +105,39 @@ export default {
       console.log("entered main page");
       this.map = L.map("map").setView([51.505, -0.09], 13);
 
+      this.markerLayer = new L.LayerGroup();
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(this.map);
+
+      this.markerLayer.addTo(this.map);
     },
 
     clearMap() {
       this.map != undefined ? this.map.remove() : null;
     },
 
-    setLatLng() {
-      const coordinates = JSON.parse(sessionStorage.getItem("geoLocation"));
-      console.log(coordinates);
+    setLatLng(coordinates) {
       this.latitude = coordinates.latitude;
-      //WARNING: LEAVE lognitude AS IS - TYPO IN LEAFLET PROPERTY
-      this.longitude = coordinates.lognitude;
+      this.longitude = coordinates.longitude;
+    },
+
+    setMarker(coordinates) {
+      if (this.markerLayer.getLayers().length >= 1) {
+        this.markerLayer.clearLayers();
+      }
+      this.marker = L.marker({
+        lat: coordinates.latitude,
+        lng: coordinates.longitude,
+      }).addTo(this.markerLayer);
     },
 
     onMarkerDialogClose() {
+      const coordinates = JSON.parse(sessionStorage.getItem("geoLocation"));
       this.dialogMap = false;
-      this.setLatLng();
+      this.setLatLng(coordinates);
+      this.setMarker(coordinates);
     },
   },
 

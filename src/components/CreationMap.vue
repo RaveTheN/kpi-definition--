@@ -63,13 +63,14 @@ export default {
     },
 
     getLatLng(e) {
+      console.log(e.latlng);
       this.marker = L.marker(e.latlng).addTo(this.markerLayer);
       this.latitude = e.latlng.lat;
       this.longitude = e.latlng.lng;
 
       const geoLocation = {
         latitude: this.latitude,
-        lognitude: this.longitude,
+        longitude: this.longitude,
       };
 
       sessionStorage.setItem("geoLocation", JSON.stringify(geoLocation));
