@@ -3,12 +3,14 @@
     <div id="map"></div>
     <v-text-field
       label="Latitude"
+      v-model="latitude"
       variant="outlined"
       density="compact"
       max-width="30%"
     ></v-text-field>
     <v-text-field
       label="Longitude"
+      v-model="longitude"
       variant="outlined"
       density="compact"
       max-width="30%"
@@ -28,7 +30,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn text="Close Dialog" @click="dialogMap = false"></v-btn>
+          <v-btn text="Close Dialog" @click="onMarkerDialogClose"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -47,6 +49,8 @@ export default {
     return {
       dialogMap: false,
       map: L.map,
+      latitude: "",
+      longitude: "",
 
       editedItem: {
         id: "",
@@ -106,6 +110,19 @@ export default {
 
     clearMap() {
       this.map != undefined ? this.map.remove() : null;
+    },
+
+    setLatLng() {
+      const coordinates = JSON.parse(sessionStorage.getItem("geoLocation"));
+      console.log(coordinates);
+      this.latitude = coordinates.latitude;
+      //WARNING: LEAVE lognitude AS IS - TYPO IN LEAFLET PROPERTY
+      this.longitude = coordinates.lognitude;
+    },
+
+    onMarkerDialogClose() {
+      this.dialogMap = false;
+      this.setLatLng();
     },
   },
 
