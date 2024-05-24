@@ -1,5 +1,6 @@
 <template>
-  <v-card color="surface-light">
+  <v-card color="surface-light" class="d-flex flex-column ga-2 ma-3 pa-3">
+    <div>{{ $t("script.select-location") }}</div>
     <div id="blank"></div>
     <v-text-field
       id="latitude"
@@ -7,7 +8,6 @@
       label="Latitude"
       variant="outlined"
       density="compact"
-      max-width="30%"
     ></v-text-field>
     <v-text-field
       id="longitude"
@@ -15,7 +15,6 @@
       label="Longitude"
       variant="outlined"
       density="compact"
-      max-width="30%"
     ></v-text-field>
   </v-card>
 </template>
@@ -88,7 +87,6 @@ export default {
 
 <style scoped>
 #map {
-  width: 50%;
   height: 250px;
 }
 </style>

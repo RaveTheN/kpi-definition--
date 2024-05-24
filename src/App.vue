@@ -1,47 +1,49 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <!-- Upper Geotag container -->
-      <v-card id="geotag-container" color="surface-light">
-        <div id="map"></div>
-        <v-text-field
-          label="Latitude"
-          v-model="latitude"
-          variant="outlined"
-          density="compact"
-          max-width="30%"
-        ></v-text-field>
-        <v-text-field
-          label="Longitude"
-          v-model="longitude"
-          variant="outlined"
-          density="compact"
-          max-width="30%"
-        ></v-text-field>
-        <!-- Map creation dialog -->
-        <v-dialog v-model="dialogMap" max-width="500">
-          <template v-slot:activator="{ props: activatorProps }">
-            <v-btn
-              v-bind="activatorProps"
-              color="surface-variant"
-              text="Open Dialog"
-              variant="flat"
-            ></v-btn>
-          </template>
-          <v-card title="Dialog">
-            <CreationMap :dialogMap="dialogMap"></CreationMap>
-            <v-card-actions>
-              <v-spacer></v-spacer>
+  <!-- Upper Geotag container -->
+  <v-card
+    id="geotag-container"
+    color="surface-light"
+    class="d-flex align center flex-row align-center ga-9 ma-2 pa-5"
+  >
+    <div id="map"></div>
+    <div class="flex-grow-1">
+      <v-text-field
+        :label="$t('labels.latitude')"
+        v-model="latitude"
+        variant="outlined"
+        density="compact"
+        readonly
+      ></v-text-field>
+      <v-text-field
+        :label="$t('labels.longitude')"
+        v-model="longitude"
+        variant="outlined"
+        density="compact"
+        readonly
+      ></v-text-field>
+    </div>
+    <!-- Map creation dialog -->
+    <v-dialog v-model="dialogMap" max-width="500">
+      <template v-slot:activator="{ props: activatorProps }">
+        <v-btn
+          v-bind="activatorProps"
+          color="#990070"
+          icon="mdi-target"
+          variant="flat"
+        ></v-btn>
+      </template>
+      <v-card :title="$t('labels.select-location')">
+        <CreationMap :dialogMap="dialogMap"></CreationMap>
+        <v-card-actions>
+          <v-spacer></v-spacer>
 
-              <v-btn text="Close Dialog" @click="onMarkerDialogClose"></v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-        <!-- END Map creation dialog -->
+          <v-btn :text="$t('labels.save')" @click="onMarkerDialogClose"></v-btn>
+        </v-card-actions>
       </v-card>
-      <!-- END Geotag container -->
-    </v-col>
-  </v-row>
+    </v-dialog>
+    <!-- END Map creation dialog -->
+  </v-card>
+  <!-- END Geotag container -->
   <v-row>
     <v-col cols="8">
       <!-- Measure and KPI selection -->
@@ -309,7 +311,6 @@ export default {
   height: 250px;
 }
 #wait {
-  width: 50%;
   height: 250px;
   border: solid 1px;
 }
