@@ -18,7 +18,14 @@
     "category": "Category",
     "unitMeasure": "Unit Measure",
     "value": "Last measured value",
-    "target": "Target value"
+    "target": "Target value",
+    "latitude": "latitude",
+    "longitude": "longitude",
+    "measures": "Measures",
+    "selected": "Selected",
+    "back": "Back",
+    "next": "Next",
+    "select-location": "Select location"
   },
   "strings": {
     "no-KPIs": "This list is empty",
@@ -30,7 +37,8 @@
     "kpi-value": "Last measured value",
     "kpi-target": "Desired target value",
     "delete-kpi-text": "KPI deleted",
-    "delete-kpi-tooltip": "Delete this KPI"
+    "delete-kpi-tooltip": "Delete this KPI",
+    "select-location": "Click on the map to assign selected coordinates to this KPI"
   },
   "errors": {
     "kpi-name-required": "The name field can't be empty"

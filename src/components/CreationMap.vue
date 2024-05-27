@@ -1,7 +1,7 @@
 <template>
   <v-card color="surface-light" class="d-flex flex-column ga-2 ma-3 pa-3">
-    <div>{{ $t("script.select-location") }}</div>
-    <div id="blank"></div>
+    <div>{{ $t("strings.select-location") }}</div>
+    <div id="blank" class="mb-2"></div>
     <v-text-field
       id="latitude"
       v-model="latitude"

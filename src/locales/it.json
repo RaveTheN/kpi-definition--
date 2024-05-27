@@ -18,7 +18,14 @@
     "category": "Categoia",
     "unitMeasure": "Unità di Misura",
     "value": "Ultimo valore misurato",
-    "target": "Obiettivo"
+    "target": "Obiettivo",
+    "latitude": "latitudine",
+    "longitude": "longitudine",
+    "measures": "Misure",
+    "selected": "Selezionati",
+    "back": "Indietro",
+    "next": "Avanti",
+    "select-location": "Seleziona posizione"
   },
   "strings": {
     "no-KPIs": "Questa lista è vuota",
@@ -30,7 +37,8 @@
     "kpi-value": "Ultimo valore misurato",
     "kpi-target": "Obiettivo",
     "delete-kpi-text": "KPI cancellata",
-    "delete-kpi-tooltip": "Cancella questo KPI"
+    "delete-kpi-tooltip": "Cancella questo KPI",
+    "select-location": "Clicca sulla mappa per selezionare le coordinate da assegnare al KPI"
   },
   "errors": {
     "kpi-name-required": "È richiesto un nome per creare il KPI"

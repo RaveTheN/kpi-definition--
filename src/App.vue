@@ -44,7 +44,7 @@
     <!-- END Map creation dialog -->
   </v-card>
   <!-- END Geotag container -->
-  <v-row class="d-flex justify-end flex-row">
+  <v-row class="d-flex justify-end flex-row ma-1">
     <v-col cols="8" class="d-flex flex-column">
       <!-- Measure and KPI selection -->
       <v-card>
@@ -149,7 +149,7 @@
       </v-card>
     </v-col>
     <v-btn bg-color="purple" variant="text" class="me-auto">
-      {{ $t("labels.back") }}
+      {{ $t("labels.cancel") }}
     </v-btn>
     <v-btn :loading="loading" bg-color="purple" variant="text">
       {{ $t("labels.back") }}
