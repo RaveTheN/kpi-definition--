@@ -5,7 +5,7 @@
   },
   "labels": {
     "name": "nome",
-    "kpis": "KPIs",
+    "kpis": "KPI",
     "search": "cerca",
     "create-kpi": "Crea KPI",
     "cancel": "Chiudi",

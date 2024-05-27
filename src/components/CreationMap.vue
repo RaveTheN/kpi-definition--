@@ -5,16 +5,18 @@
     <v-text-field
       id="latitude"
       v-model="latitude"
-      label="Latitude"
+      :label="$t('labels.latitude')"
       variant="outlined"
       density="compact"
+      readonly
     ></v-text-field>
     <v-text-field
       id="longitude"
       v-model="longitude"
-      label="Longitude"
+      :label="$t('labels.longitude')"
       variant="outlined"
       density="compact"
+      readonly
     ></v-text-field>
   </v-card>
 </template>

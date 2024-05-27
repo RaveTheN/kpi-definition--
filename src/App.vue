@@ -27,7 +27,7 @@
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn
           v-bind="activatorProps"
-          color="#990070"
+          class="bg-pink-darken-2"
           icon="mdi-target"
           variant="flat"
         ></v-btn>
@@ -44,92 +44,132 @@
     <!-- END Map creation dialog -->
   </v-card>
   <!-- END Geotag container -->
-  <v-row>
-    <v-col cols="8">
+  <v-row class="d-flex justify-end flex-row">
+    <v-col cols="8" class="d-flex flex-column">
       <!-- Measure and KPI selection -->
       <v-card>
-        <v-tabs v-model="tab" bg-color="primary">
-          <v-tab value="one">Item One</v-tab>
-          <v-tab value="two">Item Two</v-tab>
+        <v-tabs v-model="tab" bg-color="transparent">
+          <v-tab value="measures">{{ $t("labels.measures") }}</v-tab>
+          <v-tab value="kpis">{{ $t("labels.kpis") }}</v-tab>
         </v-tabs>
 
         <v-tabs-window v-model="tab">
-          <v-tabs-window-item value="one">
-            <v-card>
+          <v-tabs-window-item value="measures">
+            <div class="d-flex flex-column">
               <v-container>
                 <v-row justify="start">
-                  <v-col v-if="!allSelected" cols="12">
+                  <v-col cols="12">
                     <v-text-field
                       ref="searchField"
                       v-model="search"
                       label="Search"
                       hide-details
                       single-line
+                      density="compact"
+                      clearable
                     ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
 
-              <v-divider v-if="!allSelected"></v-divider>
+              <v-divider></v-divider>
 
-              <v-virtual-scroll :items="searchResult" height="100%">
+              <v-virtual-scroll :items="searchResult" class="scroll">
                 <template v-slot:default="{ item }">
-                  <v-list-item
-                    v-if="!selected.includes(item)"
-                    :key="item.text"
-                    :disabled="loading"
-                    @click="selected.push(item)"
-                  >
+                  <v-list-item v-if="!selected.includes(item)" :key="item.text" :disabled="loading">
                     <v-list-item-title v-text="item.text"></v-list-item-title>
+                    <template v-slot:append
+                      ><v-btn density="compact" @click="selected.push(item)"
+                        >select</v-btn
+                      ></template
+                    >
+                  </v-list-item>
+                </template>
+              </v-virtual-scroll>
+            </div>
+          </v-tabs-window-item>
+          <v-tabs-window-item value="kpis">
+            <div>
+              <v-container>
+                <v-row justify="start">
+                  <v-col cols="12">
+                    <v-text-field
+                      ref="searchField"
+                      v-model="search"
+                      label="Search"
+                      hide-details
+                      single-line
+                      density="compact"
+                      clearable
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+
+              <v-divider></v-divider>
+              <v-virtual-scroll :items="searchResultKpis" class="scroll">
+                <template v-slot:default="{ item }">
+                  <v-list-item v-if="!selected.includes(item)" :key="item.text" :disabled="loading">
+                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                    <template v-slot:append
+                      ><v-btn density="compact" @click="selected.push(item)"
+                        >select</v-btn
+                      ></template
+                    >
                   </v-list-item>
                 </template>
               </v-virtual-scroll>
 
               <v-divider></v-divider>
-            </v-card>
+            </div>
           </v-tabs-window-item>
-          <v-tabs-window-item value="two"> Two </v-tabs-window-item>
         </v-tabs-window>
       </v-card>
     </v-col>
-    <v-col cols="4">
+    <v-col cols="4" class="d-flex flex-column">
       <!-- END Measure and KPI selection -->
-      <v-card>
-        <v-container>
-          <div height="10%" bg-color="primary">
-            <h2>Selected</h2>
-            <v-list
-              ><v-list-item
-                v-for="(selection, i) in selections"
-                :key="selection.text"
-              >
-                {{ selection.text }}
-                <v-btn :disabled="loading" @click="selected.splice(i, 1)">
-                  delete
-                </v-btn>
-              </v-list-item></v-list
-            >
-          </div>
-        </v-container>
-      </v-card>
-      <v-spacer></v-spacer>
 
-      <v-btn
-        :disabled="!selected.length"
-        :loading="loading"
-        color="purple"
-        variant="text"
-        @click="next"
-      >
-        Next
-      </v-btn>
+      <v-card class="flex-grow-1">
+        <v-card-title class="bg-pink-darken-2"
+          ><div height="10%">
+            {{ $t("labels.selected") }}
+          </div></v-card-title
+        >
+
+        <v-list
+          ><v-list-item v-for="(selection, i) in selections" :key="selection.text">
+            <v-list-item-title>{{ selection.text }}</v-list-item-title>
+            <template v-slot:append
+              ><v-btn :disabled="loading" @click="selected.splice(i, 1)">
+                {{ $t("labels.delete") }}
+              </v-btn></template
+            >
+          </v-list-item></v-list
+        >
+      </v-card>
     </v-col>
+    <v-btn bg-color="purple" variant="text" class="me-auto">
+      {{ $t("labels.back") }}
+    </v-btn>
+    <v-btn :loading="loading" bg-color="purple" variant="text">
+      {{ $t("labels.back") }}
+    </v-btn>
+    <v-btn
+      :disabled="!selected.length"
+      :loading="loading"
+      bg-color="purple"
+      variant="text"
+      @click="next"
+    >
+      {{ $t("labels.next") }}
+    </v-btn>
   </v-row>
 </template>
 
 <script>
 import CreationMap from "./components/CreationMap.vue";
 import L from "leaflet";
+import axios from "axios";
 export default {
   name: "MapComponent",
   components: {
@@ -138,6 +178,28 @@ export default {
   data: function () {
     return {
       tab: null,
+      KPIs: [
+        {
+          text: "Table",
+          icon: "mdi-nature",
+        },
+        {
+          text: "Chair",
+          icon: "mdi-glass-wine",
+        },
+        {
+          text: "Keyobard",
+          icon: "mdi-calendar-range",
+        },
+        {
+          text: "Mouse",
+          icon: "mdi-map-marker",
+        },
+        {
+          text: "Window",
+          icon: "mdi-bike",
+        },
+      ],
       items: [
         {
           text: "Nature",
@@ -265,11 +327,63 @@ export default {
         this.loading = false;
       }, 2000);
     },
+    //remove when attached to main project - get KPIs from parent
+    getKPIsList() {
+      this.loading = true;
+      axios
+        .get("https://indicators-manager-api.dev.dev-digital-enabler.eng.it/api/v1/kpi")
+        .then((response) => {
+          this.KPIs = response.data;
+          console.log(this.KPIs);
+          this.loading = false;
+        })
+        .catch((err) => {
+          this.setError(err, false);
+          this.loading = false;
+        });
+    },
+    setError(err, prevent, actionEv) {
+      console.log(err);
+      if (!err || err.response.status >= 500) {
+        err = {
+          response: {
+            status: "500",
+            statusText: "server_error",
+          },
+        };
+      }
+      document.dispatchEvent(
+        new CustomEvent("error-" + err.response.status, {
+          detail: {
+            preventDefault: prevent | false,
+            callbackEvent: actionEv,
+            data: err.response,
+          },
+        })
+      );
+    },
   },
 
   computed: {
-    allSelected() {
-      return this.selected.length === this.items.length;
+    allItemsSelected() {
+      let count = 0;
+      this.items.forEach((item) => {
+        if (this.selected.includes(item)) {
+          count++;
+        }
+      });
+
+      return this.items.length === count;
+    },
+    allKpisSelected() {
+      let count = 0;
+      this.KPIs.forEach((item) => {
+        if (this.selected.includes(item)) {
+          count++;
+        }
+      });
+
+      return this.KPIs.length === count;
     },
     searchResult() {
       const search = this.search.toLowerCase();
@@ -292,6 +406,18 @@ export default {
 
       return selections;
     },
+    searchResultKpis() {
+      const search = this.search.toLowerCase();
+
+      if (!search) return this.KPIs;
+
+      return this.KPIs.filter((kpi) => {
+        //convert kpi to text and looks in it for matches - might consider replacing for the actual measures
+        const text = kpi.text.toLowerCase();
+
+        return text.indexOf(search) > -1;
+      });
+    },
   },
   watch: {
     dialogMap(value) {
@@ -306,6 +432,9 @@ export default {
 };
 </script>
 <style scoped>
+.scroll {
+  height: 30vh;
+}
 #map {
   width: 50%;
   height: 250px;
