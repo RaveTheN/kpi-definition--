@@ -23,7 +23,6 @@
 <script>
 import L from "leaflet";
 export default {
-  props: ["dialogMap"],
   data: function () {
     return {
       map: L.Map,
@@ -41,7 +40,6 @@ export default {
   methods: {
     initMap() {
       if (document.getElementById("blank")) {
-        console.log("entered dialog");
         document.getElementById("blank").setAttribute("id", "map");
       }
       this.map = L.map("map").setView([51.505, -0.09], 13);
@@ -64,7 +62,6 @@ export default {
     },
 
     getLatLng(e) {
-      console.log(e.latlng);
       this.marker = L.marker(e.latlng).addTo(this.markerLayer);
       this.latitude = e.latlng.lat;
       this.longitude = e.latlng.lng;
@@ -79,11 +76,6 @@ export default {
   },
 
   computed: {},
-  watch: {
-    dialogMap(value) {
-      console.log(value + "from dialog");
-    },
-  },
 };
 </script>
 

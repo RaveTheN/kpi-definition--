@@ -26,6 +26,7 @@
     <v-dialog v-model="dialogMap" max-width="500">
       <template v-slot:activator="{ props: activatorProps }">
         <v-btn
+          :disabled="loading"
           v-bind="activatorProps"
           class="bg-pink-darken-2"
           icon="mdi-target"
@@ -37,7 +38,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn :text="$t('labels.save')" @click="onMarkerDialogClose"></v-btn>
+          <v-btn :text="$t('labels.save')" @click="closeLocationDialog"></v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -280,7 +281,6 @@ export default {
   },
   methods: {
     initMap() {
-      console.log("entered main page");
       this.map = L.map("map").setView([51.505, -0.09], 13);
 
       this.markerLayer = new L.LayerGroup();
@@ -311,7 +311,7 @@ export default {
       }).addTo(this.markerLayer);
     },
 
-    onMarkerDialogClose() {
+    closeLocationDialog() {
       const coordinates = JSON.parse(sessionStorage.getItem("geoLocation"));
       this.dialogMap = false;
       this.setLatLng(coordinates);
@@ -440,6 +440,7 @@ export default {
   height: 250px;
 }
 #wait {
+  width: 50%;
   height: 250px;
   border: solid 1px;
 }
