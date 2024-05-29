@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import i18n from "./i18n";
-
+import "leaflet/dist/leaflet.css";
 // Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";

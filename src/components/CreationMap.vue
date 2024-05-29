@@ -25,6 +25,9 @@ import L from "leaflet";
 export default {
   data: function () {
     return {
+      icon: L.icon({
+        iconUrl: "https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg",
+      }),
       map: L.Map,
       marker: L.Marker,
       markerLayer: L.LayerGroup,
@@ -62,7 +65,9 @@ export default {
     },
 
     getLatLng(e) {
-      this.marker = L.marker(e.latlng).addTo(this.markerLayer);
+      this.marker = L.marker(e.latlng, {
+        icon: this.icon,
+      }).addTo(this.markerLayer);
       this.latitude = e.latlng.lat;
       this.longitude = e.latlng.lng;
 

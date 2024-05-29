@@ -231,8 +231,8 @@ export default {
       latitude: "",
       longitude: "",
 
-      marker: L.Marker,
-      markerLayer: L.LayerGroup,
+      marker: L.marker,
+      markerLayer: L.layerGroup,
 
       editedItem: {
         id: "",
